@@ -47,7 +47,7 @@ export const isUpdateDialogVisible = createSelector(
       return false;
     }
 
-    return true;
+    return false;
   }
 );
 

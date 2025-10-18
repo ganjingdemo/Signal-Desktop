@@ -470,15 +470,7 @@
       }
     },
     "win": {
-      "signtoolOptions": {
-        "certificateSubjectName": "Signal Messenger, LLC",
-        "certificateSha1": "8D5E3CD800736C5E1FE459A1F5AA48287D4F6EC6",
-        "publisherName": "Signal Messenger, LLC",
-        "sign": "./ts/scripts/sign-windows.js",
-        "signingHashAlgorithms": [
-          "sha256"
-        ]
-      },
+
       "artifactName": "${name}-win-${arch}-${version}.${ext}",
       "icon": "build/icons/win/icon.ico",
       "publish": [
