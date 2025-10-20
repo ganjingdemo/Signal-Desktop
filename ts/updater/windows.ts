@@ -47,65 +47,18 @@ export class WindowsUpdater extends Updater {
     updateFilePath: string,
     isSilent: boolean
   ): Promise<() => Promise<void>> {
-    const { logger } = this;
-
-    return async () => {
-      logger.info('downloadAndInstall: installing...');
-      try {
-        await this.#install(updateFilePath, isSilent);
-        this.#installing = true;
-      } catch (error) {
-        this.markCannotUpdate(error);
-
-        throw error;
-      }
-
-      // If interrupted at this point, we only want to restart (not reattempt install)
-      this.setUpdateListener(this.restart);
-      this.restart();
-    };
+    console.log('in windows.ts, skip method installUpdate()');
+    return;
   }
 
   protected restart(): void {
-    this.logger.info('downloadAndInstall: restarting...');
-    this.markRestarting();
-    app.quit();
+    console.log('in windows.ts, skip method restart()');
+    return;
   }
 
   async #install(filePath: string, isSilent: boolean): Promise<void> {
-    if (this.#installing) {
-      return;
-    }
-
-    const { logger } = this;
-
-    logger.info('windows/install: installing package...');
-    const args = ['--updated'];
-    if (isSilent) {
-      // App isn't automatically restarted with "/S" flag, but "--updated"
-      // will trigger our code in `build/installer.nsh` that will start the app
-      // with "--start-in-tray" flag (see `app/main.ts`)
-      args.push('/S');
-    }
-    const options = {
-      detached: true,
-      stdio: 'ignore' as const, // TypeScript considers this a plain string without help
-    };
-
-    try {
-      await spawn(filePath, args, options);
-    } catch (error) {
-      if (error.code === 'UNKNOWN' || error.code === 'EACCES') {
-        logger.warn(
-          'windows/install: Error running installer; Trying again with elevate.exe'
-        );
-        await spawn(getElevatePath(), [filePath, ...args], options);
-
-        return;
-      }
-
-      throw error;
-    }
+    console.log('in windows.ts, skip method #install()');
+    return;
   }
 }
 
